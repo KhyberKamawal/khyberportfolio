@@ -68,7 +68,7 @@ export const projectsData: Project[] = [
   technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
   icon: '📄',
   image:
-      'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
   demoUrl: 'https://pdfconvertertools.netlify.app/', // ✅ actual live demo
   githubUrl: 'https://github.com/KhyberKamawal/pdfconvertertools', // 🔄 update with your repo
   completionDate: '2025',
