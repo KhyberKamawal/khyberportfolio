@@ -89,7 +89,7 @@ export const projectsData: Project[] = [
   completionDate: '2025',
   featured: true
 },
-  {
+{
   id: 'hopepath',
   title: 'HopePath Technology',
   description:
@@ -99,7 +99,7 @@ export const projectsData: Project[] = [
   icon: '💡',
   image:
       'https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', // modern tech office
-    demoUrl: 'https://hopepath.netlify.app/', // ✅ live demo
+  demoUrl: 'https://hopepath.netlify.app/', // ✅ live demo
   githubUrl: 'https://github.com/KhyberKamawal/hopepath', // 🔄 update if you have repo
   completionDate: '2025',
   featured: true
