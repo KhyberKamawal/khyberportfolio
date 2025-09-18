@@ -88,7 +88,23 @@ export const projectsData: Project[] = [
   githubUrl: 'https://github.com/KhyberKamawal/smarttravelchecklist', // 🔄 update with your repo
   completionDate: '2025',
   featured: true
+},
+  {
+  id: 'hopepath',
+  title: 'HopePath Technology',
+  description:
+    'A digital solutions company website showcasing services, technology expertise, and innovative approaches to support businesses with modern IT solutions.',
+  category: 'technology',
+  technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
+  icon: '💡',
+  image:
+      'https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', // modern tech office
+    demoUrl: 'https://hopepath.netlify.app/', // ✅ live demo
+  githubUrl: 'https://github.com/KhyberKamawal/hopepath', // 🔄 update if you have repo
+  completionDate: '2025',
+  featured: true
 }
+
   // {
   //   id: 'business-analytics-dashboard',
   //   title: 'Business Analytics Dashboard',
