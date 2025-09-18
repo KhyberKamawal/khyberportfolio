@@ -73,8 +73,22 @@ export const projectsData: Project[] = [
   githubUrl: 'https://github.com/KhyberKamawal/pdfconvertertools', // 🔄 update with your repo
   completionDate: '2025',
   featured: true
+},
+{
+  id: 'smart-travel-checklist',
+  title: 'Smart Travel Checklist',
+  description:
+    'A smart and customizable checklist app designed for travelers to plan, organize, and manage essential items, ensuring nothing is forgotten before a trip.',
+  category: 'tourism',
+  technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
+  icon: '🌍',
+  image:
+    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+  demoUrl: 'https://smarttravelchecklist.netlify.app/', // ✅ actual live demo
+  githubUrl: 'https://github.com/KhyberKamawal/smarttravelchecklist', // 🔄 update with your repo
+  completionDate: '2025',
+  featured: true
 }
-
   // {
   //   id: 'business-analytics-dashboard',
   //   title: 'Business Analytics Dashboard',
