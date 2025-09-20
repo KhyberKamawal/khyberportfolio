@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   title: string;
   description: string;
-  category: 'ai' | 'business' | 'tourism' | 'utility' | 'web';
+  category: 'ai' | 'business' | 'tourism' | 'utility' | 'web' | 'technology';
   technologies: string[];
   icon: string;
   image: string;
