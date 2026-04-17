@@ -29,6 +29,19 @@ const Hero = () => {
     }
   };
 
+  const floatingIcons = [
+    { text: '</>', color: 'text-purple-600', size: 'text-xl' },
+    { text: '{ }', color: 'text-orange-500', size: 'text-xl' },
+    { text: 'console', color: 'text-green-600', size: 'text-sm' },
+    { text: '⚛️', color: 'text-blue-500', size: 'text-2xl' },
+    { text: 'import', color: 'text-yellow-500', size: 'text-base' },
+    { text: 'def', color: 'text-pink-500', size: 'text-base' },
+    { text: 'class', color: 'text-indigo-500', size: 'text-base' },
+    { text: 'return', color: 'text-red-500', size: 'text-base' },
+    { text: '🐍', color: 'text-yellow-500', size: 'text-2xl' },
+    { text: '☕', color: 'text-pink-500', size: 'text-xl' },
+  ];
+
   return (
     <section
       id="home"
@@ -100,7 +113,7 @@ const Hero = () => {
               <Button
                 size="lg"
                 onClick={() => scrollToSection('#portfolio')}
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="group bg-primary hover:bg-blue-600 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-full btn-primary-glow"
               >
                 <span className="mr-2">View My Work</span>
                 <ArrowDown className="h-5 w-5 group-hover:translate-y-1 transition-transform" />
@@ -109,7 +122,7 @@ const Hero = () => {
                 size="lg"
                 variant="outline"
                 asChild
-                className="group px-8 py-4 text-lg font-semibold border-2 border-primary hover:bg-primary hover:text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="group px-8 py-4 text-lg font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-full"
               >
                 <a
                   href="/Khyber-CV.pdf"
@@ -151,7 +164,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Profile Image with Floating Emojis */}
+            {/* Profile Image with Floating Emojis */}
           <div
             className={`flex justify-center lg:justify-center relative transition-all duration-1000 delay-300 ${
               isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
@@ -168,22 +181,6 @@ const Hero = () => {
               />
               {/* Glow Ring */}
               <div className="absolute inset-0 rounded-full border-4 border-purple-500/40 animate-pulse" />
-            </div>
-
-            {/* Floating Items (Closer to Ring) */}
-            <div className="absolute inset-0 w-[130%] h-[130%] pointer-events-none">
-              <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-purple-600 font-bold animate-float">{'</>'}</span>
-              <span className="absolute top-1/4 -right-6 text-orange-500 font-bold animate-float-delay">{'{ }'}</span>
-              <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-green-600 text-sm font-mono animate-float-slow">console.log()</span>
-              <span className="absolute top-1/3 -left-6 text-blue-500 text-2xl animate-float">⚛️</span>
-
-              <span className="absolute top-1/4 -left-8 text-yellow-500 font-mono animate-float">import</span>
-              <span className="absolute top-1/4 -right-8 text-pink-500 font-mono animate-float-slow">def</span>
-              <span className="absolute bottom-1/4 -left-8 text-indigo-500 font-mono animate-float-delay">class</span>
-              <span className="absolute bottom-1/4 -right-8 text-red-500 font-mono animate-float">return</span>
-
-              <span className="absolute top-1/2 -left-10 text-yellow-500 text-2xl animate-float">🐍</span>
-              <span className="absolute top-1/2 -right-10 text-pink-500 text-xl animate-float-delay">☕</span>
             </div>
           </div>
         </div>

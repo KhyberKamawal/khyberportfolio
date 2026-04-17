@@ -382,11 +382,11 @@ const categoryImages: Record<Project["category"] | "default", string> = {
 
           {/* Call to Action */}
           <div className={`text-center mt-16 transition-all duration-1000 delay-600 ${isIntersecting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 rounded-2xl p-8 border border-blue-200/20 dark:border-blue-800/20">
-              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-                <Sparkles className="h-10 w-10 text-white" />
+            <div className="bg-card/50 rounded-2xl p-8 border border-blue-500/20">
+              <div className="w-20 h-20 mx-auto mb-6 bg-primary/20 rounded-full flex items-center justify-center">
+                <Sparkles className="h-10 w-10 text-primary" />
               </div>
-              <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h3 className="text-2xl font-semibold mb-4 text-white">
                 Ready to Start Your Project?
               </h3>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
@@ -394,7 +394,7 @@ const categoryImages: Record<Project["category"] | "default", string> = {
               </p>
               <Button 
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-full"
+                className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-full btn-primary-glow"
                 onClick={() => {
                   const element = document.querySelector('#contact');
                   if (element) {

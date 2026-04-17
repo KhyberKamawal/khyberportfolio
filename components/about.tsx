@@ -170,7 +170,9 @@ const About = () => {
   return (
     <section id="about" ref={sectionRef} className="py-10 md:py-16 lg:py-20 relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-950/20 dark:via-transparent dark:to-purple-950/20" />
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
+      </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -181,8 +183,8 @@ const About = () => {
               <span className="text-3xl">🚀</span>
               <span className="text-3xl">🌟</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins mb-4">
-              About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Me</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins mb-4 text-white">
+              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Me</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Passionate developer with a mission to create innovative solutions that make a difference
@@ -192,10 +194,12 @@ const About = () => {
           {/* Achievement Counters */}
           <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16 transition-all duration-700 delay-150 ${isIntersecting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {achievements.map((achievement, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-400 hover:-translate-y-2 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 border-0 shadow-lg">
+              <Card key={index} className="group hover:shadow-xl transition-all duration-400 hover:-translate-y-2 bg-card border-border shadow-lg">
                 <CardContent className="p-6 md:p-8 text-center">
                   <div className="flex justify-center mb-4 md:mb-6">
-                    
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <achievement.icon className="w-6 h-6 md:w-7 md:h-7 text-primary" />
+                    </div>
                   </div>
                   <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 md:mb-3">
                     {achievement.value}{achievement.suffix}
@@ -210,13 +214,13 @@ const About = () => {
             {/* Content */}
             <div className={`space-y-6 md:space-y-8 transition-all duration-700 delay-300 ${isIntersecting ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
               {/* Introduction */}
-              <Card className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 border-0 shadow-lg">
+              <Card className="bg-card border-border shadow-lg">
                 <CardContent className="p-4 md:p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
                       <span className="text-xl text-white">💻</span>
                     </div>
-                    <h3 className="text-xl font-semibold font-poppins bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent">
+                    <h3 className="text-xl font-semibold font-poppins text-white">
                       Crafting Digital Excellence
                     </h3>
                   </div>
@@ -273,13 +277,13 @@ const About = () => {
               </Card>
 
               {/* Programming Languages */}
-              <Card className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 border-0 shadow-lg">
+              <Card className="bg-card border-0 shadow-lg">
                 <CardContent className="p-4 md:p-6">
                   <div className="flex items-center gap-3 mb-4 md:mb-6">
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary flex items-center justify-center">
                       <span className="text-white text-sm md:text-base">👨‍💻</span>
                     </div>
-                    <h3 className="text-lg font-semibold">Programming Languages</h3>
+                    <h3 className="text-lg font-semibold text-white">Programming Languages</h3>
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
                     {[
@@ -300,42 +304,17 @@ const About = () => {
                   </div>
                 </CardContent>
               </Card>
-
-              {/* Highlights Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                {highlights.map((item, index) => (
-                  <Card key={index} className="group hover:shadow-lg transition-all duration-400 hover:-translate-y-1 border-0 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
-                    <CardContent className="p-4 md:p-6">
-                      <div className="flex items-start space-x-3 md:space-x-4">
-                        <div className="flex-shrink-0">
-                          <div className={`w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r ${item.gradient} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                            <item.icon className="h-5 w-5 md:h-6 md:w-6 text-white" />
-                          </div>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-base md:text-lg font-semibold mb-1 md:mb-2 group-hover:text-primary transition-colors">
-                            {item.title}
-                          </h4>
-                          <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
-                            {item.description}
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
             </div>
 
             {/* Timeline */}
             <div className={`transition-all duration-700 delay-500 ${isIntersecting ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <Card className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 border-0 shadow-lg">
+              <Card className="bg-card border-border shadow-lg">
                 <CardContent className="p-4 md:p-6">
                   <div className="flex items-center gap-3 justify-center mb-6 md:mb-8">
                     <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
                       <span className="text-white text-sm md:text-base">📈</span>
                     </div>
-                    <h3 className="text-xl font-semibold font-poppins">My Journey</h3>
+                    <h3 className="text-xl font-semibold font-poppins text-white">My Journey</h3>
                   </div>
                   <div className="relative">
                     {/* Timeline line */}
@@ -351,12 +330,12 @@ const About = () => {
                           
                           {/* Content */}
                           <div className="flex-1 pb-6 md:pb-8 min-w-0">
-                            <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg p-3 md:p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                            <div className="bg-secondary rounded-lg p-3 md:p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                               <div className="flex items-center space-x-2 mb-1 md:mb-2">
                                 <span className="text-xs md:text-sm font-medium text-muted-foreground">{item.year}</span>
                                 <div className={`w-2 h-2 bg-gradient-to-r ${item.color} rounded-full`}></div>
                               </div>
-                              <h4 className="text-base md:text-lg font-semibold mb-1 md:mb-2 group-hover:text-primary transition-colors">
+                              <h4 className="text-base md:text-lg font-semibold mb-1 md:mb-2 text-white group-hover:text-primary transition-colors">
                                 {item.title}
                               </h4>
                               <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
@@ -370,6 +349,83 @@ const About = () => {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+
+          {/* Full Width Sections Below Grid */}
+          <div className="mt-12 space-y-12">
+            {/* Tech Vocabulary & Fun */}
+            <div className={`transition-all duration-700 delay-700 ${isIntersecting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <Card className="bg-card border-border shadow-lg">
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex items-center justify-center gap-3 mb-8">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center">
+                      <span className="text-white text-xl md:text-2xl">🎲</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-semibold text-white">Coding Universe</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-4 justify-center">
+                    {[
+                      { text: '</>', color: 'text-purple-400', label: 'Markup' },
+                      { text: '{ }', color: 'text-orange-400', label: 'Logic' },
+                      { text: 'console.log()', color: 'text-green-400', label: 'Debug' },
+                      { text: 'import', color: 'text-yellow-400', label: 'Modules' },
+                      { text: 'def', color: 'text-pink-400', label: 'Functions' },
+                      { text: 'class', color: 'text-indigo-400', label: 'OOP' },
+                      { text: 'return', color: 'text-red-400', label: 'Output' },
+                      { text: 'npm', color: 'text-red-500', label: 'Packages' },
+                      { text: 'git', color: 'text-orange-500', label: 'Version' },
+                      { text: '404', color: 'text-blue-400', label: 'Error' },
+                      { text: '<div>', color: 'text-purple-300', label: 'Block' },
+                      { text: '&&', color: 'text-cyan-400', label: 'And' },
+                      { text: '||', color: 'text-cyan-400', label: 'Or' },
+                      { text: '=>', color: 'text-yellow-300', label: 'Arrow' },
+                      { text: 'async', color: 'text-teal-400', label: 'Async' },
+                      { text: 'await', color: 'text-teal-400', label: 'Wait' },
+                    ].map((item, index) => (
+                      <div
+                        key={index}
+                        className="group relative px-4 py-3 bg-secondary/30 border border-border rounded-xl hover:bg-secondary/60 transition-all duration-300 cursor-default hover:-translate-y-1 hover:shadow-lg"
+                      >
+                        <span className={`font-mono font-bold ${item.color} text-base md:text-lg`}>
+                          {item.text}
+                        </span>
+                        <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-popover text-popover-foreground text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none border border-border shadow-xl">
+                          {item.label}
+                          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-popover border-r border-b border-border rotate-45 transform"></div>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Highlights Grid */}
+            <div className={`transition-all duration-700 delay-900 ${isIntersecting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {highlights.map((item, index) => (
+                  <Card key={index} className="group hover:shadow-lg transition-all duration-400 hover:-translate-y-1 border-border bg-card">
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="flex-shrink-0">
+                          <div className={`w-12 h-12 bg-gradient-to-r ${item.gradient} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                            <item.icon className="h-6 w-6 text-white" />
+                          </div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-lg font-semibold mb-2 text-white group-hover:text-primary transition-colors">
+                            {item.title}
+                          </h4>
+                          <p className="text-muted-foreground text-sm leading-relaxed">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
         </div>

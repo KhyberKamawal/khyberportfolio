@@ -32,9 +32,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${poppins.variable}`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <ThemeProvider 
+          attribute="class" 
+          defaultTheme="dark" 
+          enableSystem={false}
+          themes={['dark', 'minimal']}
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>

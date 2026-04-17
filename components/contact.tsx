@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback, memo } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -8,6 +8,92 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { toast } from 'sonner';
+
+interface FloatingLabelInputProps {
+  id: string;
+  name: string;
+  type?: string;
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  required?: boolean;
+  multiline?: boolean;
+  rows?: number;
+  focusedField: string | null;
+  setFocusedField: (id: string | null) => void;
+}
+
+const FloatingLabelInput = memo(({ 
+  id, 
+  name, 
+  type = 'text', 
+  label, 
+  value, 
+  onChange, 
+  required = false,
+  multiline = false,
+  rows = 1,
+  focusedField,
+  setFocusedField
+}: FloatingLabelInputProps) => {
+  const hasValue = value.length > 0;
+  const isFocused = focusedField === id;
+  
+  const handleFocus = useCallback(() => setFocusedField(id), [id, setFocusedField]);
+  const handleBlur = useCallback(() => setFocusedField(null), [setFocusedField]);
+  
+  return (
+    <div className="relative">
+      {multiline ? (
+        <Textarea
+          id={id}
+          name={name}
+          value={value}
+          onChange={onChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          required={required}
+          rows={rows}
+          className={`peer w-full pt-6 pb-2 px-3 border-2 rounded-lg transition-all duration-300 bg-transparent ${
+            isFocused 
+              ? 'border-blue-500 shadow-lg shadow-blue-500/20' 
+              : 'border-muted-foreground/20 hover:border-muted-foreground/40'
+          } resize-none`}
+          placeholder=" "
+        />
+      ) : (
+        <Input
+          id={id}
+          name={name}
+          type={type}
+          value={value}
+          onChange={onChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          required={required}
+          className={`peer w-full pt-6 pb-2 px-3 border-2 rounded-lg transition-all duration-300 bg-transparent ${
+            isFocused 
+              ? 'border-blue-500 shadow-lg shadow-blue-500/20' 
+              : 'border-muted-foreground/20 hover:border-muted-foreground/40'
+          }`}
+          placeholder=" "
+        />
+      )}
+      <label
+        htmlFor={id}
+        className={`absolute left-3 transition-all duration-300 pointer-events-none ${
+          hasValue || isFocused
+            ? 'top-2 text-xs text-blue-600 font-medium'
+            : 'top-1/2 -translate-y-1/2 text-muted-foreground'
+        }`}
+      >
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+    </div>
+  );
+});
+
+FloatingLabelInput.displayName = 'FloatingLabelInput';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -20,27 +106,35 @@ const Contact = () => {
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const { ref: sectionRef, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission with animation
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Format the message for WhatsApp
+      const whatsappMessage = `Name: ${formData.name}%0AEmail: ${formData.email}%0ASubject: ${formData.subject}%0AMessage: ${formData.message}`;
       
-      toast.success("Message sent successfully!", {
-        description: "Thank you for reaching out. I'll get back to you soon.",
+      // Create WhatsApp URL
+      const whatsappUrl = `https://wa.me/923251533935?text=${whatsappMessage}`;
+      
+      // Open WhatsApp in a new tab
+      window.open(whatsappUrl, '_blank');
+      
+      // Show success message
+      toast.success("Message opened in WhatsApp!", {
+        description: "Please send the pre-filled message to complete your inquiry.",
         icon: <CheckCircle className="h-4 w-4" />,
       });
 
+      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -48,8 +142,8 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
-      toast.error("Error sending message", {
-        description: "Please try again later or contact me directly via email.",
+      toast.error("Error preparing message", {
+        description: "Please try again later or contact me directly via WhatsApp.",
         icon: <AlertCircle className="h-4 w-4" />,
       });
     } finally {
@@ -69,7 +163,7 @@ const Contact = () => {
       icon: Phone,
       title: 'Phone',
       value: '+93 77 6583537',
-      href: 'tel:+93 77 6583537',
+      href: 'tel:+93776583537',
       gradient: 'from-green-500 to-emerald-500'
     },
     {
@@ -105,70 +199,12 @@ const Contact = () => {
     }
   ];
 
-  // Floating Label Input Component
-  const FloatingLabelInput = ({ 
-    id, 
-    name, 
-    type = 'text', 
-    label, 
-    value, 
-    onChange, 
-    required = false,
-    multiline = false,
-    rows = 1
-  }: {
-    id: string;
-    name: string;
-    type?: string;
-    label: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-    required?: boolean;
-    multiline?: boolean;
-    rows?: number;
-  }) => {
-    const hasValue = value.length > 0;
-    const isFocused = focusedField === id;
-    
-    const InputComponent = multiline ? Textarea : Input;
-    
-    return (
-      <div className="relative">
-        <InputComponent
-          id={id}
-          name={name}
-          type={type}
-          value={value}
-          onChange={onChange}
-          onFocus={() => setFocusedField(id)}
-          onBlur={() => setFocusedField(null)}
-          required={required}
-          rows={multiline ? rows : undefined}
-          className={`peer w-full pt-6 pb-2 px-3 border-2 rounded-lg transition-all duration-300 bg-transparent ${
-            isFocused 
-              ? 'border-blue-500 shadow-lg shadow-blue-500/20' 
-              : 'border-muted-foreground/20 hover:border-muted-foreground/40'
-          } ${multiline ? 'resize-none' : ''}`}
-          placeholder=" "
-        />
-        <label
-          htmlFor={id}
-          className={`absolute left-3 transition-all duration-300 pointer-events-none ${
-            hasValue || isFocused
-              ? 'top-2 text-xs text-blue-600 font-medium'
-              : 'top-1/2 -translate-y-1/2 text-muted-foreground'
-          }`}
-        >
-          {label} {required && <span className="text-red-500">*</span>}
-        </label>
-      </div>
-    );
-  };
-
   return (
     <section id="contact" ref={sectionRef} className="py-20 relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-950/20 dark:via-transparent dark:to-purple-950/20" />
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
+      </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -269,6 +305,8 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
+                      focusedField={focusedField}
+                      setFocusedField={setFocusedField}
                     />
                     <FloatingLabelInput
                       id="email"
@@ -278,6 +316,8 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
+                      focusedField={focusedField}
+                      setFocusedField={setFocusedField}
                     />
                   </div>
 
@@ -288,6 +328,8 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
+                    focusedField={focusedField}
+                    setFocusedField={setFocusedField}
                   />
 
                   <FloatingLabelInput
@@ -299,12 +341,14 @@ const Contact = () => {
                     required
                     multiline
                     rows={6}
+                    focusedField={focusedField}
+                    setFocusedField={setFocusedField}
                   />
 
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:hover:scale-100"
+                    className="group w-full bg-primary hover:bg-primary/90 text-white py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:hover:scale-100 rounded-full btn-primary-glow"
                   >
                     {isSubmitting ? (
                       <div className="flex items-center">

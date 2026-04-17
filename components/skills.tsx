@@ -255,7 +255,7 @@ const Skills = () => {
               ].map((skill, index) => (
                 <span
                   key={skill}
-                  className={`px-4 py-2 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-full text-sm font-medium hover:scale-105 transition-all duration-300 cursor-default hover:shadow-lg animate-fade-in`}
+                  className={`px-4 py-2 bg-card border border-border rounded-full text-sm font-medium hover:scale-105 transition-all duration-300 cursor-default hover:shadow-lg hover:border-primary/50 animate-fade-in text-muted-foreground hover:text-primary`}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {skill}

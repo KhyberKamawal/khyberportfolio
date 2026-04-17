@@ -2,7 +2,11 @@ export interface Project {
   id: string;
   title: string;
   description: string;
+<<<<<<< HEAD
   category: 'ai' | 'business' | 'tourism' | 'utility' | 'web' | 'technology';
+=======
+  category: 'ai' | 'business' | 'tourism' | 'utility' | 'web' | 'productivity' | 'technology';
+>>>>>>> 5176828 (update portfolio changes)
   technologies: string[];
   icon: string;
   image: string;
@@ -58,7 +62,6 @@ export const projectsData: Project[] = [
     completionDate: '2025',
     featured: false
   },
-  // Add more projects with appropriate AI-generated images
   {
   id: 'ai-chatbot-platform',
   title: 'AI Chatbot Platform',
@@ -69,8 +72,8 @@ export const projectsData: Project[] = [
   icon: '🤖',
   image:
     'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  demoUrl: 'https://frolicking-salmiakki-8b8613.netlify.app/', // ✅ updated
-  githubUrl: 'https://github.com/yourusername/ai-chatbot',    // 🔄 update with real repo
+  demoUrl: 'https://frolicking-salmiakki-8b8613.netlify.app/', 
+  githubUrl: 'https://github.com/yourusername/ai-chatbot',  
   completionDate: '2025',
   featured: true
 } ,
@@ -82,10 +85,45 @@ export const projectsData: Project[] = [
   category: 'utility',
   technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
   icon: '📄',
+  image: 'https://images.pexels.com/photos/267569/pexels-photo-267569.jpeg?auto=compress&fit=crop&w=800&q=80', 
+  demoUrl: 'https://pdfconvertertools.netlify.app/',
+  githubUrl: 'https://github.com/KhyberKamawal/pdfconvertertools', 
+  completionDate: '2025',
+  featured: true
+},
+{
+  id: 'smart-travel-checklist',
+  title: 'Smart Travel Checklist',
+  description:
+    'A smart and customizable checklist app designed for travelers to plan, organize, and manage essential items, ensuring nothing is forgotten before a trip.',
+  category: 'tourism',
+  technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
+  icon: '🌍',
   image:
+<<<<<<< HEAD
       'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
   demoUrl: 'https://pdfconvertertools.netlify.app/', // ✅ actual live demo
   githubUrl: 'https://github.com/KhyberKamawal/pdfconvertertools', // 🔄 update with your repo
+=======
+    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+  demoUrl: 'https://smarttravelchecklist.netlify.app/', 
+  githubUrl: 'https://github.com/KhyberKamawal/smarttravelchecklist', 
+  completionDate: '2025',
+  featured: true
+},
+{
+  id: 'hopepath',
+  title: 'HopePath Technology',
+  description:
+    'A digital solutions company website showcasing services, technology expertise, and innovative approaches to support businesses with modern IT solutions.',
+  category: 'technology',
+  technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
+  icon: '💡',
+  image:
+      'https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+  demoUrl: 'https://hopepath.netlify.app/', 
+  githubUrl: 'https://github.com/KhyberKamawal/Hopepath-Technology', 
+>>>>>>> 5176828 (update portfolio changes)
   completionDate: '2025',
   featured: true
 },
